@@ -3,22 +3,26 @@ import React from 'react'
 import './BlogCarousal.css'
 
 class BlogCarousal extends React.Component {
-    state  = {
-        blogTiles: [
-            'test'
-        ]
+    state = {
+      blogPosts: [
+        'first',
+        'second',
+        'third',
+        'fourth',
+        'see more'
+      ]
     }
     render() {
         return (
-            <div className="blog-carousal flex">
+            <div className="blog-carousal flex-col">
               <div className='thumbnail-section'>
-                {this.state.blogTiles.map((blogTile) => {
-                  return (
-                      <div className='thumbnail flex'>
-                        {blogTile}
-                      </div>
-                  )
-                })}
+                <div className='thumbnail-slide'>
+                  {this.state.blogPosts.map((post) => {
+                    return (
+                      <div className='thumbnail'>{post}</div>
+                    )
+                  })}
+                </div>
               </div>
               <div className='blog-browse'>
                 <div className='blog-select'></div> 

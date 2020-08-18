@@ -7,16 +7,26 @@
 .thumbnail-section {
   /* no flexbox on scroll container */
   width: 500px;
-  height: 100px;
+  height: 500px;
   background-color: mediumturquoise;
   overflow-y: hidden;
   overflow-x: auto;
+  border: 5px solid purple;
+}
+
+.thumbnail-slide {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 2500px;
+  height: 500px;
 }
 
 .thumbnail {
-  width: 1500px;
-  height: 90px;
-  border: 1px solid red;
+  height: 500px;
+  width: 500px;
+  background-color: navy;
+  border: 1px solid darkred;
 }
 
 .blog-browse {
@@ -32,5 +42,5 @@
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  background-color: maroon;
+  background-color: magenta;
 }
