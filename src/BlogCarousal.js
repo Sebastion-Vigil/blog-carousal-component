@@ -1,5 +1,7 @@
 import React from 'react'
 
+import { Link, Element, Events, scrollSpy } from "react-scroll";
+
 import './BlogCarousal.css'
 
 class BlogCarousal extends React.Component {
@@ -9,27 +11,57 @@ class BlogCarousal extends React.Component {
         'second',
         'third',
         'fourth',
-        'see more'
+        'more'
       ]
+    }
+    componentDidMount() {
+      Events.scrollEvent.register("begin", function () {
+        console.log("begin", arguments);
+      });
+      Events.scrollEvent.register("end", function () {
+        console.log("end", arguments);
+      });
+      scrollSpy.update();
+    }
+    componentWillUnmount() {
+      Events.scrollEvent.remove("begin");
+      Events.scrollEvent.remove("end");
     }
     render() {
         return (
             <div className="blog-carousal flex-col">
-              <div className='thumbnail-section'>
+              <Element 
+                className='thumbnail-section'
+                name='first'
+                id='containerElement'
+              >
                 <div className='thumbnail-slide'>
-                  {this.state.blogPosts.map((post) => {
+                  {this.state.blogPosts.map((post, i) => {
                     return (
-                      <div className='thumbnail'>{post}</div>
+                      <Element 
+                        key={i}
+                        className='thumbnail'
+                        name={this.state.blogPosts[i]}
+                      >{post}
+                      </Element>
                     )
                   })}
                 </div>
-              </div>
+              </Element>
               <div className='blog-browse'>
-                <div className='blog-select'></div> 
-                <div className='blog-select'></div> 
-                <div className='blog-select'></div> 
-                <div className='blog-select'></div>
-                <div className='blog-select'></div>
+                {this.state.blogPosts.map((post, i) => {
+                  return (
+                    <Link 
+                  key={i}
+                  className='blog-select'
+                  activeClass='active'
+                  to={this.state.blogPosts[i]}
+                  spy={true}
+                  duration={500}
+                  containerId='containerElement'
+                ></Link> 
+                  )
+                })}
               </div>
             </div>
         )
