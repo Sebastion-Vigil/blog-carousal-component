@@ -5,17 +5,13 @@ import './BlogCarousal.css'
 class BlogCarousal extends React.Component {
     state  = {
         blogTiles: [
-            'first',
-            'second',
-            'third',
-            'fourth',
-            'all blogs'
+            'test'
         ]
     }
     render() {
         return (
             <div className="blog-carousal flex">
-              <div className='blog-thumbnails'>
+              <div className='thumbnail-section'>
                 {this.state.blogTiles.map((blogTile) => {
                   return (
                       <div className='thumbnail flex'>

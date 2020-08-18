@@ -4,17 +4,17 @@
   border: 1px solid black;
 }
 
-.blog-thumbnails {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
+.thumbnail-section {
+  /* no flexbox on scroll container */
   width: 500px;
-  height: 400px;
+  height: 100px;
   background-color: mediumturquoise;
+  overflow-y: hidden;
+  overflow-x: auto;
 }
 
 .thumbnail {
-  width: 75px;
+  width: 1500px;
   height: 90px;
   border: 1px solid red;
 }
