@@ -1,0 +1,36 @@
+.blog-carousal {
+  width: 500px;
+  height: 500px;
+  border: 1px solid black;
+}
+
+.blog-thumbnails {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 500px;
+  height: 400px;
+  background-color: mediumturquoise;
+}
+
+.thumbnail {
+  width: 75px;
+  height: 90px;
+  border: 1px solid red;
+}
+
+.blog-browse {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 500px;
+  height: 100px;
+  background-color: blue;
+}
+
+.blog-select {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: maroon;
+}

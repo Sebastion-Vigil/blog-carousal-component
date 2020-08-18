@@ -1,0 +1,6 @@
+{
+  "short_name": "Blog Carousal",
+  "name": "Reusable Blog Carousal Component",
+  "start_url": ".",
+  "display": "standalone"
+}
