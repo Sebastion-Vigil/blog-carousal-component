@@ -1,7 +1,5 @@
 import React from 'react'
 
-import { Link, Element, Events, scrollSpy } from "react-scroll";
-
 import './BlogCarousal.css'
 
 class BlogCarousal extends React.Component {
@@ -12,54 +10,56 @@ class BlogCarousal extends React.Component {
         'third',
         'fourth',
         'more'
+      ],
+      currentPosition: '0%',
+      allPositions: [
+        '0%',
+        '-100%',
+        '-200%',
+        '-300%',
+        '-400%'
       ]
     }
-    componentDidMount() {
-      Events.scrollEvent.register("begin", function () {
-        console.log("begin", arguments);
-      });
-      Events.scrollEvent.register("end", function () {
-        console.log("end", arguments);
-      });
-      scrollSpy.update();
+ 
+    handleBlogSelect = (selected) => {
+      const newPosition = this.state.allPositions[selected]
+      this.setState({
+        currentPosition: newPosition
+      })     
     }
-    componentWillUnmount() {
-      Events.scrollEvent.remove("begin");
-      Events.scrollEvent.remove("end");
-    }
+
     render() {
         return (
             <div className="blog-carousal flex-col">
-              <Element 
+              <div 
                 className='thumbnail-section'
                 name='first'
-                id='containerElement'
               >
-                <div className='thumbnail-slide'>
+                <div 
+                  className='thumbnail-slide'
+                  style={{
+                    "left": this.state.currentPosition
+                  }}
+                >
                   {this.state.blogPosts.map((post, i) => {
                     return (
-                      <Element 
-                        key={i}
+                      <div 
                         className='thumbnail'
-                        name={this.state.blogPosts[i]}
+                        key={i}
                       >{post}
-                      </Element>
+                      </div>
                     )
                   })}
                 </div>
-              </Element>
+              </div>
               <div className='blog-browse'>
                 {this.state.blogPosts.map((post, i) => {
                   return (
-                    <Link 
-                  key={i}
+                    <div 
                   className='blog-select'
-                  activeClass='active'
-                  to={this.state.blogPosts[i]}
-                  spy={true}
-                  duration={500}
-                  containerId='containerElement'
-                ></Link> 
+                  key={i}
+                  onClick={() => this.handleBlogSelect(i)}
+                ></div> 
                   )
                 })}
               </div>

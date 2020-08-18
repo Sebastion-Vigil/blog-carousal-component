@@ -11,7 +11,7 @@
   height: 500px;
   background-color: mediumturquoise;
   overflow-y: hidden;
-  overflow-x: auto;
+  overflow-x: hidden;
   border: 5px solid purple;
 }
 
