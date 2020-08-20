@@ -23,7 +23,7 @@ class BlogCarousal extends React.Component {
         this.setState({
           currentPosition: currentPosition.toString() + '%'
         })
-      })
+      }, 0)
     })
   }
 
@@ -52,7 +52,9 @@ class BlogCarousal extends React.Component {
               <div
                 className='blog-select'
                 key={i}
-                onClick={() => this.handleBlogSelect(this.state.allPositions[i])}
+                onClick={() =>
+                  this.handleBlogSelect(this.state.allPositions[i])
+                }
               ></div>
             )
           })}
