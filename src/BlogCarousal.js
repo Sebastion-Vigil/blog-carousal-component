@@ -4,21 +4,31 @@ import './BlogCarousal.css'
 
 class BlogCarousal extends React.Component {
   state = {
-    blogPosts: ['first', 'second', 'third', 'fourth', 'more'],
+    blogPosts: ['first', 'second', 'third', 'fourth', 'see more'],
     currentPosition: '0%',
     allPositions: ['0%', '-100%', '-200%', '-300%', '-400%'],
-    slideTimer: undefined
+    slideTimer: undefined,
+    slideActive: false
+  }
+
+  stopSlideTimer = () => {
+      clearInterval(this.state.slideTimer)
+      this.setState({
+          slideActive: false
+      })
   }
 
   handleBlogSelect = selected => {
+    if (this.state.slideActive) return
     const targetPosition = parseInt(selected)
     let currentPosition = parseInt(this.state.currentPosition)
     if (currentPosition === targetPosition) return
     this.setState({
+      slideActive: true,
       slideTimer: setInterval(() => {
         targetPosition > currentPosition ? ++currentPosition : --currentPosition
         if (currentPosition === targetPosition) {
-          clearInterval(this.state.slideTimer)
+          this.stopSlideTimer()
         }
         this.setState({
           currentPosition: currentPosition.toString() + '%'
@@ -29,35 +39,40 @@ class BlogCarousal extends React.Component {
 
   render () {
     return (
-      <div className='blog-carousal flex-col'>
-        <div className='thumbnail-section' name='first'>
-          <div
-            className='thumbnail-slide'
-            style={{
-              left: this.state.currentPosition
-            }}
-          >
-            {this.state.blogPosts.map((post, i) => {
+      <div className='blog-carousal'>
+        <div className='carousal'>
+          <div className='thumbnail-section'>
+            <div
+              className='thumbnail-slide'
+              style={{
+                left: this.state.currentPosition
+              }}
+            >
+              {this.state.blogPosts.map((post, i) => {
+                return (
+                  <div 
+                    className='thumbnail'
+                    key={i}
+                  >
+                    {post}
+                  </div>
+                )
+              })}
+            </div>
+          </div>
+          <div className='user-select'>
+            {this.state.allPositions.map((post, i) => {
               return (
-                <div className='thumbnail' key={i}>
-                  {post}
-                </div>
+                <div
+                  className='select-button'
+                  key={i}
+                  onClick={() =>
+                    this.handleBlogSelect(this.state.allPositions[i])
+                  }
+                ></div>
               )
             })}
           </div>
-        </div>
-        <div className='blog-browse'>
-          {this.state.blogPosts.map((post, i) => {
-            return (
-              <div
-                className='blog-select'
-                key={i}
-                onClick={() =>
-                  this.handleBlogSelect(this.state.allPositions[i])
-                }
-              ></div>
-            )
-          })}
         </div>
       </div>
     )
