@@ -8,21 +8,36 @@ class BlogCarousal extends React.Component {
     currentPosition: '0%',
     allPositions: ['0%', '-100%', '-200%', '-300%', '-400%'],
     slideTimer: undefined,
-    slideActive: false
+    slideActive: false,
+    buttonColors: [
+      'white',
+      'rgb(83, 78, 78)',
+      'rgb(83, 78, 78)',
+      'rgb(83, 78, 78)',
+      'rgb(83, 78, 78)'
+    ]
   }
 
   stopSlideTimer = () => {
-      clearInterval(this.state.slideTimer)
-      this.setState({
-          slideActive: false
-      })
+    clearInterval(this.state.slideTimer)
+    this.setState({
+      slideActive: false
+    })
   }
 
-  handleBlogSelect = selected => {
-    if (this.state.slideActive) return
+  handleBlogSelect = (selected, index) => {
     const targetPosition = parseInt(selected)
     let currentPosition = parseInt(this.state.currentPosition)
+    const buttonColors = [
+      'rgb(83, 78, 78)',
+      'rgb(83, 78, 78)',
+      'rgb(83, 78, 78)',
+      'rgb(83, 78, 78)',
+      'rgb(83, 78, 78)'
+    ]
+    buttonColors[index] = 'white'
     if (currentPosition === targetPosition) return
+    if (this.state.slideActive) return
     this.setState({
       slideActive: true,
       slideTimer: setInterval(() => {
@@ -31,7 +46,8 @@ class BlogCarousal extends React.Component {
           this.stopSlideTimer()
         }
         this.setState({
-          currentPosition: currentPosition.toString() + '%'
+          currentPosition: currentPosition.toString() + '%',
+          buttonColors: buttonColors
         })
       }, 0)
     })
@@ -41,33 +57,35 @@ class BlogCarousal extends React.Component {
     return (
       <div className='blog-carousal'>
         <div className='carousal'>
-          <div className='thumbnail-section'>
-            <div
-              className='thumbnail-slide'
-              style={{
-                left: this.state.currentPosition
-              }}
-            >
-              {this.state.blogPosts.map((post, i) => {
-                return (
-                  <div 
-                    className='thumbnail'
-                    key={i}
-                  >
-                    {post}
-                  </div>
-                )
-              })}
+          <div className='laptop'>
+            <div className='thumbnail-section'>
+              <div
+                className='thumbnail-slide'
+                style={{
+                  left: this.state.currentPosition
+                }}
+              >
+                {this.state.blogPosts.map((post, i) => {
+                  return (
+                    <div className='thumbnail' key={i}>
+                      {post}
+                    </div>
+                  )
+                })}
+              </div>
             </div>
           </div>
           <div className='user-select'>
-            {this.state.allPositions.map((post, i) => {
+            {this.state.allPositions.map((position, i) => {
               return (
                 <div
                   className='select-button'
                   key={i}
+                  style={{
+                    backgroundColor: this.state.buttonColors[i]
+                  }}
                   onClick={() =>
-                    this.handleBlogSelect(this.state.allPositions[i])
+                    this.handleBlogSelect(position, i)
                   }
                 ></div>
               )

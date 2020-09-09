@@ -1,63 +1,82 @@
 /* mobile design */
 
 .blog-carousal {
+  width: 320px;
+  height: 364px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border: 1px solid blue;
 }
 
 .carousal {
   width: 320px;
-  height: 320px;
+  height: 364px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  font-size: 12px;
+}
+
+.laptop {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 300px;
+  height: 300px;
+  padding-left: 8px;
+  background-image: url('./laptop2.png');
+  background-size: 100% 100%;
+  /* border: 1px solid purple; */
 }
 
 .thumbnail-section {
-  width: 320px;
-  height: 320px;
+  width: 195px;
+  height: 300px;
   position: relative;
   overflow-y: hidden;
   overflow-x: hidden;
+  /* border: 1px solid green; */
 }
 
 .thumbnail-slide {
-  width: 1600px;
-  height: 320px;
+  width: 975px;
+  height: 300px;
   position: absolute;
   display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-  border: 1px solid purple;
+  justify-content: center;
+  align-items: flex-start;
+  /* border: 1px solid gold; */
 }
 
 .thumbnail {
-  width: 320px;
-  height: 320px;
+  width: 195px;
+  height: 195px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  text-decoration: none;
+  color: magenta;
+  /* border: 1px solid red; */
 }
 
 .user-select {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  width: 320px;
+  width: 300px;
   height: 64px;
-  border: 1px solid magenta;
+  /* border: 1px solid rgb(19, 18, 18); */
 }
 
 .select-button {
   width: 25px;
   height: 25px;
   border-radius: 50%;
-  background-color: rgb(19, 18, 18);
+  /* background-color: rgb(83, 78, 78); */
 }
 
 /* desktop design */
@@ -65,40 +84,45 @@
 @media (min-width: 800px) {
   .blog-carousal {
     width: 800px;
-    height: 800px;
-    border: 1px solid purple;
+    height: 600px;
   }
 
   .carousal {
     width: 500px;
-    height: 500px;
-    border: 1px solid rgb(19, 18, 18);
+    height: 533px;
   }
+
+  .laptop {
+    width: 500px; /* laptop img */
+    height: 500px;
+    padding-left: 15px;
+  }
+
 
   .thumbnail-section {
-    width: 500px;
+    width: 325px;
     height: 500px;
   }
 
+
   .thumbnail-slide {
-    width: 2500px;
+    width: 1625px;
     height: 500px;
   }
 
   .thumbnail {
-    width: 500px;
-    height: 500px;
+    width: 325px;
+    height: 330px;
+    font-size: 20px;
   }
 
   .user-select {
     width: 500px;
-    height: 100px;
-    border: 1px solid rgb(19, 18, 18);
+    height: 35px;
   }
 
   .select-button {
-    width: 50px;
-    height: 50px;
-    background-color: rgb(19, 18, 18);
+    width: 33px;
+    height: 33px;
   }
 }
